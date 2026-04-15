@@ -1,0 +1,43 @@
+/* นำเข้าฟอนต์ Google Fonts (Poppins) เพื่อให้ดูโมเดิร์นและอ่านง่าย */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* รีเซ็ตค่าเริ่มต้นของเบราว์เซอร์ เพื่อให้จัดหน้าเว็บได้ง่ายขึ้น */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* คำนวณขนาดขอบรวมเข้าไปในความกว้าง/ยาวของ element เลย */
+}
+
+/* ตั้งค่าให้หน้าเว็บและพื้นหลัง */
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh; /* บังคับให้ความสูงอย่างน้อยเท่ากับหน้าจอพอดี */
+    
+    /* ใช้ Flexbox จัดให้ทุกอย่างอยู่กึ่งกลางหน้าจอทั้งแนวตั้งและแนวนอน */
+    display: flex;
+    justify-content: center; /* กึ่งกลางแนวนอน */
+    align-items: center;     /* กึ่งกลางแนวตั้ง */
+    text-align: center;      /* จัดตัวอักษรให้อยู่ตรงกลาง */
+    
+    /* พระเอกของความสมูท: 
+       เวลา JS เปลี่ยน style.backgroundColor หรือ style.color 
+       คำสั่งนี้จะสั่งให้มันค่อยๆ เฟดเปลี่ยนในเวลา 0.4 วินาที (ไม่เปลี่ยนแบบกระตุก) 
+    */
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* กล่องครอบเนื้อหา เผื่อระยะขอบนิดหน่อยกันเนื้อหาชิดขอบจอเกินไปในมือถือ */
+.container {
+    padding: 2rem;
+}
+
+/* สไตล์ของหัวข้อ */
+h2 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 2px; /* เพิ่มระยะห่างระหว่างตัวอักษรให้ดูโปร่งขึ้น */
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+/* สไตล์ของตัว
