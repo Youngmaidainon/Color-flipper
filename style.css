@@ -40,4 +40,55 @@ h2 {
     line-height: 1.5;
 }
 
-/* สไตล์ของตัว
+/* สไตล์ของตัวเลขรหัสสี (จะให้ใหญ่และหนาเป็นพิเศษ) */
+#hex-code {
+    font-size: 4rem;
+    font-weight: 600;
+    text-transform: uppercase; /* บังคับตัวพิมพ์ใหญ่เสมอ แม้ JS จะส่งตัวพิมพ์เล็กมา */
+}
+
+/* จัดกลุ่มปุ่มให้อยู่เรียงกันแนวนอน */
+.button-group {
+    display: flex;
+    gap: 1.5rem; /* ระยะห่างระหว่างปุ่ม Generate และ Copy */
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* สไตล์หลักของปุ่มกด */
+button {
+    font-family: inherit; /* ใช้ฟอนต์เดียวกับ body */
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.75rem 2.5rem;
+    border-radius: 50px; /* ทำให้ขอบปุ่มโค้งมน */
+    cursor: pointer; /* เปลี่ยนเมาส์เป็นรูปมือเวลานำไปชี้ */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* การตั้งค่าสีปุ่มให้ลิงก์กับ JS ของคุณ */
+    background: transparent; /* พื้นหลังปุ่มโปร่งใส เพื่อให้เห็นสีฉากหลัง */
+    color: inherit; /* ดึงสีตัวอักษรมาจาก body ที่ JS คำนวณไว้ให้ (ดำ หรือ ขาว) */
+    
+    /* currentColor คือทริคที่ดึงสีจาก property 'color' ด้านบนมาใช้เป็นสีเส้นขอบ */
+    border: 2px solid currentColor; 
+    
+    /* ทำให้เวลาชี้เมาส์ หรือคลิก มีแอนิเมชันนุ่มนวล 0.3 วินาที */
+    transition: all 0.3s ease;
+}
+
+/* เอฟเฟกต์ตอนเอาเมาส์ชี้ปุ่ม (Hover) */
+button:hover {
+    background: currentColor; /* เปลี่ยนพื้นหลังปุ่มเป็นสีเดียวกับตัวอักษร */
+    
+    /* ทริคสลับสี: filter: invert(100%) จะกลับสีทุกอย่างที่อยู่ข้างใน
+       ทำให้ตัวอักษรที่เคยเป็นสีดำกลายเป็นขาว (หรือขาวกลายเป็นดำ) โดยอัตโนมัติ
+       ดูสวยงามและโค้ดสั้นมาก 
+    */
+    filter: invert(100%); 
+}
+
+/* เอฟเฟกต์ตอนกำลังกดคลิกปุ่ม (Active) */
+button:active {
+    transform: scale(0.95); /* หดปุ่มเล็กลง 5% ให้ความรู้สึกเหมือนปุ่มถูกกดลงไปจริงๆ */
+}
