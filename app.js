@@ -21,7 +21,7 @@ function applyColor(color) { // [เพิ่มใหม่] ฟังก์ช
     localStorage.setItem('myColor', color); // โดยตั้งชื่อ Key ว่า 'myColor' และ Value คือรหัสสี
 }
 function flipColor() { // ฟังก์ชันเมื่อกดปุ่ม Generate
-    const newColor = getRandomHex(); // // สุ่มสีใหม่
+    const newColor = getRandomHex();  // สุ่มสีใหม่
     applyColor(newColor); // เรียกใช้ฟังก์ชันเปลี่ยนสีและเซฟ
 }
 
@@ -44,3 +44,16 @@ if (saved) {
 } else {
     flipColor(); // ถ้าเพิ่งเปิดเว็บครั้งแรกสุดๆ ยังไม่มีข้อมูลเซฟไว้ ให้สุ่มสีใหม่ขึ้นมา
 };
+
+// ดักจับการกดปุ่มบนหน้าเว็บ
+document.addEventListener('keydown', function (event) {
+    // ตรวจสอบว่าปุ่มที่กดคือ Spacebar หรือไม่ (code: 'Space' หรือ key: ' ')
+    if (event.code === 'Space') {
+
+        // 1. ป้องกันไม่ให้หน้าเว็บเลื่อนลงมา (พฤติกรรมปกติของ Spacebar บนเบราว์เซอร์)
+        event.preventDefault();
+
+        // 2. สั่งให้ปุ่ม Generate ถูกคลิก (หรือจะเรียกฟังก์ชัน flipColor() ตรงๆ เลยก็ได้)
+        document.getElementById('generate').click();
+    }
+});
