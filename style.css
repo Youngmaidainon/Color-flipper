@@ -150,3 +150,22 @@ button:active {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
+
+/* =========================================
+   ส่วนที่เพิ่มมาใหม่สำหรับ RGB Text
+========================================= */
+#rgb-code {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    opacity: 0.8; /* ทำให้สีจางกว่าตัว Hex โค้ดเล็กน้อยเพื่อให้มีมิติ */
+}
+
+/* ปรับ margin ด้านล่างของ hex-code เดิมให้แคบลงเพื่อเว้นที่ให้ rgb-code */
+#hex-code {
+    font-size: 4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem; 
+}
