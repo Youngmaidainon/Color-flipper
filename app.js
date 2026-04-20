@@ -1,7 +1,7 @@
 // app.js
 
 // ==========================================
-// 🎨 ส่วนที่ 1: การเตรียมตัวแปร (DOM Elements)
+// ส่วนที่ 1: การเตรียมตัวแปร (DOM Elements)
 // ดึงแท็กต่างๆ จาก HTML มาเก็บไว้ในตัวแปร เพื่อให้เรียกใช้งานได้ง่าย
 // ==========================================
 const hexCodeDisplay = document.getElementById('hex-code');
@@ -11,11 +11,11 @@ const copyBtn = document.getElementById('copy');
 
 
 // ==========================================
-// ⚙️ ส่วนที่ 2: ฟังก์ชันการทำงานหลัก (Main Functions)
+// ส่วนที่ 2: ฟังก์ชันการทำงานหลัก (Main Functions)
 // ==========================================
 
 /**
- * 🎲 ฟังก์ชันสุ่มรหัสสี Hex (เช่น #ff0055)
+ * ฟังก์ชันสุ่มรหัสสี Hex (เช่น #ff0055)
  * @returns {string} รหัสสี Hex ความยาว 6 หลักพร้อมเครื่องหมาย #
  */
 function getRandomHex() {
@@ -27,7 +27,7 @@ function getRandomHex() {
 }
 
 /**
- * 💡 ฟังก์ชันคำนวณสีตัวอักษรให้ตัดกับสีพื้นหลัง (อ่านง่ายขึ้น)
+ * ฟังก์ชันคำนวณสีตัวอักษรให้ตัดกับสีพื้นหลัง (อ่านง่ายขึ้น)
  * @param {string} hex - รหัสสีพื้นหลังที่สุ่มได้
  * @returns {string} คืนค่าเป็น สีดำ (#000000) หรือ สีขาว (#ffffff)
  */
@@ -45,7 +45,7 @@ function getTextColor(hex) {
 }
 
 /**
- * 🔄 ฟังก์ชันเปลี่ยนสีหน้าเว็บ (ทำงานเมื่อกดปุ่ม Generate)
+ * ฟังก์ชันเปลี่ยนสีหน้าเว็บ (ทำงานเมื่อกดปุ่ม Generate)
  */
 function flipColor() {
     const color = getRandomHex(); // สุ่มสีใหม่
@@ -58,7 +58,7 @@ function flipColor() {
 
 
 // ==========================================
-// 🖱️ ส่วนที่ 3: การจัดการเหตุการณ์ (Event Listeners)
+// ส่วนที่ 3: การจัดการเหตุการณ์ (Event Listeners)
 // ดักจับการกระทำของผู้ใช้งาน เช่น การคลิก หรือการกดคีย์บอร์ด
 // ==========================================
 
@@ -86,13 +86,13 @@ copyBtn.addEventListener('click', () => {
 });
 
 // --- 3. ปุ่ม Save: บันทึกสีโปรดลง LocalStorage ---
+let count_save = 0;
 saveBtn.addEventListener('click', function () {
     const currentColor = hexCodeDisplay.textContent;
 
     // ดึงข้อมูลสีเก่าที่เคยเซฟไว้ (ถ้าไม่มีให้สร้างเป็น Array ว่าง [])
     // ต้องใช้ JSON.parse เพื่อแปลงข้อความกลับมาเป็น Array
     let savedColors = JSON.parse(localStorage.getItem('favoriteColors')) || [];
-
     // ตรวจสอบว่าสีนี้ถูกเซฟไปหรือยัง จะได้ไม่เซฟซ้ำ
     if (savedColors.includes(currentColor)) {
         alert(`สี ${currentColor} นี้บันทึกไปแล้วครับ`);
@@ -105,8 +105,12 @@ saveBtn.addEventListener('click', function () {
     // แปลง Array กลับเป็นข้อความ (JSON.stringify) แล้วบันทึกลง LocalStorage
     localStorage.setItem('favoriteColors', JSON.stringify(savedColors));
 
+    // บวกเลขเพิ่มทีละ 1 เมื่อมีการบันทึกสำเร็จ
+    count_save ++;
+
     // เปลี่ยนสีไอคอน/ข้อความปุ่ม Save เป็นสีขาว เพื่อบอกว่าบันทึกสำเร็จ
     saveBtn.style.color = '#FFFFFF';
+    saveBtn.setAttribute('data-count' , count_save); // อัปเดตข้อความบนปุ่มให้แสดงตัวเลขด้วย เช่น "Save (1)", "Save (2)"
     console.log("บันทึกสำเร็จ: " + currentColor);
 });
 

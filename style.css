@@ -94,6 +94,8 @@ button:active {
     /* ซ่อน Text เดิม */
     font-size: 0;
     padding: 0;
+    position: relative; /* เพิ่ม position: relative ให้ปุ่ม Save เดิม เพื่อใช้เป็นจุดอ้างอิงตำแหน่ง */
+    overflow: visible; /* ป้องกันไม่ให้ตัวเลขโดนซ่อน */
 
     /* ลบสไตล์ปุ่ม default */
     border: none;
@@ -129,4 +131,22 @@ button:active {
     /* ใช้ CSS mask แทนการใส่รูปตรงๆ เพื่อให้เปลี่ยนสีตาม currentColor ได้ */
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z'/%3E%3C/svg%3E") no-repeat center / contain;
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+/* สร้างตัวเลขแสดงใต้ปุ่ม (จะทำงานก็ต่อเมื่อมี attribute data-count จาก JS) */
+#save[data-count]::after {
+    content: attr(data-count);
+    
+    /* จัดตำแหน่งให้อยู่ใต้ปุ่ม */
+    position: absolute;
+    bottom: -30px; 
+    
+    /* แก้ไขตรงนี้: ให้กล่องข้อความกว้างเท่ากับปุ่ม และจัด Text ให้อยู่ตรงกลาง */
+    left: -6px;
+    width: 100%;
+    text-align: center;
+    
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
